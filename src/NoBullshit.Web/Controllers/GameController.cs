@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NoBullshit.Shared.Models;
+using NoBullshit.Web.Services;
 
 namespace NoBullshit.Web.Controllers;
 
@@ -15,22 +16,24 @@ public class GamesController : ControllerBase
     }
 
     [HttpGet(Name = "Get Games")]
-    public IEnumerable<Game> Get()
+    public async Task<IEnumerable<Game>> Get()
     {
         _logger.LogInformation("GetGames called");
 
-        return Enumerable.Range(1, 5).Select(index => new AndroidGame()
-        {
-            Id = index,
-            Name = $"Game {index}",
-            Genre = $"Genre {index}",
-            ImageUrl = $"https://placehold.it/200x200?text={index}",
-            StoreUrl = $"https://play.google.com/store/apps/details?id={index}",
-            Rating = index,
-            Reviews = 1000,
-            Price = index * 10,
-            Added = DateOnly.FromDateTime(DateTime.Now).ToString()
-        })
-        .ToArray();
+        return await CrawlerService.CrawlAsync();
+
+        // return Enumerable.Range(1, 5).Select(index => new AndroidGame()
+        // {
+        //     Id = index,
+        //     Name = $"Game {index}",
+        //     Genre = $"Genre {index}",
+        //     ImageUrl = $"https://placehold.it/200x200?text={index}",
+        //     StoreUrl = $"https://play.google.com/store/apps/details?id={index}",
+        //     Rating = index,
+        //     Reviews = 1000,
+        //     Price = index * 10,
+        //     Added = DateOnly.FromDateTime(DateTime.Now).ToString()
+        // })
+        // .ToArray();
     }
 }

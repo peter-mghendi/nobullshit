@@ -4,5 +4,5 @@ namespace NoBullshit.Shared.Models;
 
 public class IOSGame : Game
 {
-    public new readonly GamePlatform Platform = IOS;
+    public override GamePlatform Platform => IOS;
 }

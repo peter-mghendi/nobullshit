@@ -4,5 +4,5 @@ namespace NoBullshit.Shared.Models;
 
 public class AndroidGame : Game
 {
-    public new readonly GamePlatform Platform = Android;
+    public override GamePlatform Platform => Android;
 }
