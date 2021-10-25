@@ -1,15 +1,20 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+using NoBullshit.Web.Data;
+using NoBullshit.Web.Infrastructure;
+using NoBullshit.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<NoBullshitContext>(options =>
+    options.UseSqlite(connectionString));
+
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters
-            .Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-    });
+    .AddJsonOptions(options => options.JsonSerializerOptions.Converters
+            .Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)));
 
 /**
   * Swagger/OpenAPI config
@@ -17,6 +22,9 @@ builder.Services.AddControllers()
   */
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddHostedService<GameCacheUpdateService>();
 
 var app = builder.Build();
 

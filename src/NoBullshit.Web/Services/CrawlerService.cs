@@ -8,20 +8,20 @@ public class CrawlerService
 {
     private const string BaseUrl = "https://nobsgames.stavros.io";
 
-    public static async Task<List<Game>> CrawlAsync()
+    public static async Task<List<Game>> CrawlAsync(CancellationToken cancellationToken = default)
     {
         List<Game> games = new();
 
-        var androidGames = await CrawlForAndroidGamesAsync();
+        var androidGames = await CrawlForAndroidGamesAsync(cancellationToken);
         games.AddRange(androidGames);
 
-        var iOSGames = await CrawlForIOSGamesAsync();
+        var iOSGames = await CrawlForIOSGamesAsync(cancellationToken);
         games.AddRange(iOSGames);
 
         return games;
     }
 
-    private static async Task<IEnumerable<Game>> CrawlForAndroidGamesAsync()
+    private static async Task<IEnumerable<Game>> CrawlForAndroidGamesAsync(CancellationToken cancellationToken = default)
     {
         HtmlWeb web = new();
 
@@ -32,7 +32,7 @@ public class CrawlerService
         // TODO: Since we know the total number of pages, we can optimize this to parallelize requests.
         while (page == 1 || hasNextPage)
         {
-            HtmlDocument doc = await web.LoadFromWebAsync($"{BaseUrl}/android?page={page}");
+            HtmlDocument doc = await web.LoadFromWebAsync($"{BaseUrl}/android?page={page}", cancellationToken);
             var nodes = doc.DocumentNode.SelectNodes("//table[@id='apps']//tbody//tr");
             foreach (var node in nodes)
             {
@@ -41,7 +41,7 @@ public class CrawlerService
                     Name = node.SelectSingleNode(".//td[1]/a").InnerText.Trim().Split('\n')[0],
                     ImageUrl = BaseUrl + node.SelectSingleNode(".//td[1]/a/img").Attributes["src"].Value,
                     StoreUrl = node.SelectSingleNode(".//td[1]/a").Attributes["href"].Value,
-                    Genre = node.SelectSingleNode(".//td[2]").InnerText.Split(", "),
+                    Genres = node.SelectSingleNode(".//td[2]").InnerText.Split(", "),
                     Rating = float.Parse(node.SelectSingleNode(".//td[3]").InnerText),
                     Reviews = int.Parse(node.SelectSingleNode(".//td[4]").InnerText.Replace(",", "")),
                     Price = decimal.Parse(node.SelectSingleNode(".//td[5]").GetDataAttribute("order").Value),
@@ -50,14 +50,13 @@ public class CrawlerService
             }
             var arrow = doc.DocumentNode.SelectSingleNode("//ul[contains(concat(' ', normalize-space(@class), ' '), ' pagination ')]/li[last()]");
             hasNextPage = !arrow.Attributes["class"].Value.Contains("disabled");
-            Console.WriteLine($"Page {page}, hasNextPage: {hasNextPage}");
             page++;
         }
 
         return games;
     }
 
-    private static async Task<IEnumerable<Game>> CrawlForIOSGamesAsync()
+    private static async Task<IEnumerable<Game>> CrawlForIOSGamesAsync(CancellationToken cancellationToken = default)
     {
         HtmlWeb web = new();
 
@@ -68,7 +67,7 @@ public class CrawlerService
         // TODO: Since we know the total number of pages, we can optimize this to parallelize requests.
         while (page == 1 || hasNextPage)
         {
-            HtmlDocument doc = await web.LoadFromWebAsync($"{BaseUrl}/ios?page={page}");
+            HtmlDocument doc = await web.LoadFromWebAsync($"{BaseUrl}/ios?page={page}", cancellationToken);
             var nodes = doc.DocumentNode.SelectNodes("//table[@id='apps']//tbody//tr");
             foreach (var node in nodes)
             {
@@ -77,7 +76,7 @@ public class CrawlerService
                     Name = node.SelectSingleNode(".//td[1]/a").InnerText.Trim().Split('\n')[0],
                     ImageUrl = BaseUrl + node.SelectSingleNode(".//td[1]/a/img").Attributes["src"].Value,
                     StoreUrl = node.SelectSingleNode(".//td[1]/a").Attributes["href"].Value,
-                    Genre = node.SelectSingleNode(".//td[2]").InnerText.Split(", "),
+                    Genres = node.SelectSingleNode(".//td[2]").InnerText.Split(", "),
                     Rating = float.Parse(node.SelectSingleNode(".//td[3]").InnerText),
                     Reviews = int.Parse(node.SelectSingleNode(".//td[4]").InnerText.Replace(",", "")),
                     Price = decimal.Parse(node.SelectSingleNode(".//td[5]").GetDataAttribute("order").Value),
@@ -86,7 +85,6 @@ public class CrawlerService
             }
             var arrow = doc.DocumentNode.SelectSingleNode("//ul[contains(concat(' ', normalize-space(@class), ' '), ' pagination ')]/li[last()]");
             hasNextPage = !arrow.Attributes["class"].Value.Contains("disabled");
-            Console.WriteLine($"Page {page}, hasNextPage: {hasNextPage}");
             page++;
         }
         

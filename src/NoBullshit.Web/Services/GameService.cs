@@ -1,20 +1,27 @@
+using Microsoft.EntityFrameworkCore;
 using NoBullshit.Shared.Models;
+using NoBullshit.Web.Data;
 
 namespace NoBullshit.Web.Services;
 
-public class GameService
+public class GameService : IGameService
 {
-    private readonly ILogger<GameService> _logger;
-    private readonly List<Game> _games = new();
+    private readonly NoBullshitContext _context;
 
-    public GameService(ILogger<GameService> logger)
+    public GameService(NoBullshitContext context)
     {
-        _logger = logger;
+        _context = context;
     }
 
-    public Task Add(Game game) {
-        _games.Add(game);
-        _logger.LogInformation($"Game {game.Id} added");
-        return Task.CompletedTask;
+    public async Task<List<Game>> ListGamesAsync(CancellationToken cancellationToken = default)
+    {
+        return await _context.Games!.ToListAsync(cancellationToken);
+    }
+
+    public async Task ReplaceGamesAsync(IEnumerable<Game> games, CancellationToken cancellationToken = default)
+    {
+        _context.Games!.RemoveRange(_context.Games);
+        await _context.Games.AddRangeAsync(games, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
