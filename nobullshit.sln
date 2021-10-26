@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoBullshit.Web", "src\NoBul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoBullshit.Shared", "src\NoBullshit.Shared\NoBullshit.Shared.csproj", "{E93B5F41-6E63-4E6C-9B6C-373CB7123A43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoBullshit.Client", "src\NoBullshit.Client\NoBullshit.Client.csproj", "{ED7FDCA2-0677-4EF7-BA6C-AB6FB616C9AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +28,14 @@ Global
 		{E93B5F41-6E63-4E6C-9B6C-373CB7123A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E93B5F41-6E63-4E6C-9B6C-373CB7123A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E93B5F41-6E63-4E6C-9B6C-373CB7123A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED7FDCA2-0677-4EF7-BA6C-AB6FB616C9AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED7FDCA2-0677-4EF7-BA6C-AB6FB616C9AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED7FDCA2-0677-4EF7-BA6C-AB6FB616C9AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED7FDCA2-0677-4EF7-BA6C-AB6FB616C9AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F93092BA-CC80-4C8F-90E8-1C17AB22483F} = {A43E4A10-1AF7-441C-9B76-E915220D2C13}
 		{E93B5F41-6E63-4E6C-9B6C-373CB7123A43} = {A43E4A10-1AF7-441C-9B76-E915220D2C13}
+		{ED7FDCA2-0677-4EF7-BA6C-AB6FB616C9AF} = {A43E4A10-1AF7-441C-9B76-E915220D2C13}
 	EndGlobalSection
 EndGlobal
