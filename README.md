@@ -7,7 +7,7 @@ Scraper for NoBSGames
 - [x] Serves API
 - [x] Caches scraped data in database
 - [x] Paginate API
-- [x] .NET vlient library
+- [x] .NET client library
 - [x] CLI application
 - [ ] MAUI application
 - [ ] Blazor webassembly PWA
