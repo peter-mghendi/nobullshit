@@ -25,7 +25,7 @@ public class GetGamesCommand : AsyncCommand<GetGamesCommand.Settings>
 
     public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
-        var client = new NoBullshitClient("http://localhost:5141", "NoBullshit.Cli");
+        var client = new NoBullshitClient("https://localhost:7101", "NoBullshit.Cli");
         var response = await AnsiConsole.Status()
                     .StartAsync("Fetching...", async ctx => await client.GetGamesAsync(settings.Page));
         
@@ -48,7 +48,7 @@ public class GetGamesCommand : AsyncCommand<GetGamesCommand.Settings>
                 game.Platform ?? string.Empty,
                 string.Join(", ", game.Genres ?? Array.Empty<string>()),
                 $"${game.Price}",
-                game.Rating.ToString(),
+                game.Rating.ToString("0.0"),
                 game.Reviews.ToString())
             );
 

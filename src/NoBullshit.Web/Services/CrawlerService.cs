@@ -1,6 +1,7 @@
 using NoBullshit.Shared.Models;
 using HtmlAgilityPack;
 using System.Linq;
+using System.Web;
 
 namespace NoBullshit.Web.Services;
 
@@ -37,7 +38,7 @@ public class CrawlerService
             {
                 games.Add(new AndroidGame
                 {
-                    Name = node.SelectSingleNode(".//td[1]/a").InnerText.Trim().Split('\n')[0],
+                    Name = HttpUtility.HtmlDecode(node.SelectSingleNode(".//td[1]/a").InnerText.Trim().Split('\n')[0]),
                     ImageUrl = BaseUrl + node.SelectSingleNode(".//td[1]/a/img").Attributes["src"].Value,
                     StoreUrl = node.SelectSingleNode(".//td[1]/a").Attributes["href"].Value,
                     Genres = node.SelectSingleNode(".//td[2]").InnerText.Split(", "),
@@ -71,7 +72,7 @@ public class CrawlerService
             {
                 games.Add(new IOSGame
                 {
-                    Name = node.SelectSingleNode(".//td[1]/a").InnerText.Trim().Split('\n')[0],
+                    Name = HttpUtility.HtmlDecode(node.SelectSingleNode(".//td[1]/a").InnerText.Trim().Split('\n')[0]),
                     ImageUrl = BaseUrl + node.SelectSingleNode(".//td[1]/a/img").Attributes["src"].Value,
                     StoreUrl = node.SelectSingleNode(".//td[1]/a").Attributes["href"].Value,
                     Genres = node.SelectSingleNode(".//td[2]").InnerText.Split(", "),
