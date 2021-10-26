@@ -6,5 +6,6 @@ Scraper for NoBSGames
 - [x] Scrapes source
 - [x] Serves API
 - [x] Caches scraped data in database
-- [ ] Paginate API
-- [ ] Optimize the fuck out of the crawler
+- [x] Paginate API
+- [ ] Client library
+- [ ] CLI application

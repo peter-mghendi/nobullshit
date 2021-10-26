@@ -24,6 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddSingleton<GameCacheUpdateStatsService>();
 builder.Services.AddHostedService<GameCacheUpdateService>();
 
 var app = builder.Build();

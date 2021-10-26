@@ -29,7 +29,6 @@ public class CrawlerService
         bool hasNextPage = true;
         var games = new List<Game>();
 
-        // TODO: Since we know the total number of pages, we can optimize this to parallelize requests.
         while (page == 1 || hasNextPage)
         {
             HtmlDocument doc = await web.LoadFromWebAsync($"{BaseUrl}/android?page={page}", cancellationToken);
@@ -64,7 +63,6 @@ public class CrawlerService
         bool hasNextPage = true;
         var games = new List<Game>();
 
-        // TODO: Since we know the total number of pages, we can optimize this to parallelize requests.
         while (page == 1 || hasNextPage)
         {
             HtmlDocument doc = await web.LoadFromWebAsync($"{BaseUrl}/ios?page={page}", cancellationToken);

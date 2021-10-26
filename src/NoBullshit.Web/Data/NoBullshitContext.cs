@@ -17,7 +17,7 @@ public class NoBullshitContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Game>()
-           .HasDiscriminator<string>(g => g.Platform)
+           .HasDiscriminator<string>(g => g.Platform!)
            .HasValue<AndroidGame>("android")
            .HasValue<IOSGame>("ios");
 
