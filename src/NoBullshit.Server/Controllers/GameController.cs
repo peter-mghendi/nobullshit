@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using NoBullshit.Shared.Models;
-using NoBullshit.Web.Infrastructure;
-using NoBullshit.Web.Services;
+using NoBullshit.Server.Infrastructure;
+using NoBullshit.Server.Services;
 
-namespace NoBullshit.Web.Controllers;
+namespace NoBullshit.Server.Controllers;
 
 [ApiController]
 [Route("[controller]")]

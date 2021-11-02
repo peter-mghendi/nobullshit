@@ -1,6 +1,6 @@
 using NoBullshit.Shared.Models;
 
-namespace NoBullshit.Web.Services;
+namespace NoBullshit.Server.Services;
 
 public interface IGameService
 {

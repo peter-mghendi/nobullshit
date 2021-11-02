@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "NoBullshit.Web": {
+    "NoBullshit.Server": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

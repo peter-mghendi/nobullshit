@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NoBullshit.Shared.Models;
 
-namespace NoBullshit.Web.Data;
+namespace NoBullshit.Server.Data;
 
 public class NoBullshitContext : DbContext
 {

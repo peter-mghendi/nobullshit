@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using NoBullshit.Shared.Models;
-using NoBullshit.Web.Data;
+using NoBullshit.Server.Data;
 
-namespace NoBullshit.Web.Services;
+namespace NoBullshit.Server.Services;
 
 public class GameService : IGameService
 {

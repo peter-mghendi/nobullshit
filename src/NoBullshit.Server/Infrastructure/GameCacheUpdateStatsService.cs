@@ -1,4 +1,4 @@
-namespace NoBullshit.Web.Infrastructure;
+namespace NoBullshit.Server.Infrastructure;
 
 public class GameCacheUpdateStatsService
 {

@@ -3,7 +3,7 @@ using HtmlAgilityPack;
 using System.Linq;
 using System.Web;
 
-namespace NoBullshit.Web.Services;
+namespace NoBullshit.Server.Services;
 
 public class CrawlerService
 {

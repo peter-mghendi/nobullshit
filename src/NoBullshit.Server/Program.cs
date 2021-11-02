@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
-using NoBullshit.Web.Data;
-using NoBullshit.Web.Infrastructure;
-using NoBullshit.Web.Services;
+using NoBullshit.Server.Data;
+using NoBullshit.Server.Infrastructure;
+using NoBullshit.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

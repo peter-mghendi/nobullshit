@@ -1,7 +1,7 @@
 using System.Diagnostics;
-using NoBullshit.Web.Services;
+using NoBullshit.Server.Services;
 
-namespace NoBullshit.Web.Infrastructure;
+namespace NoBullshit.Server.Infrastructure;
 
 public sealed class GameCacheUpdateService : IHostedService, IDisposable
 {

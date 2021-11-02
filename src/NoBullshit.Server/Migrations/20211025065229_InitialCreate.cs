@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace NoBullshit.Web.Migrations
+namespace NoBullshit.Server.Migrations
 {
     public partial class InitialCreate : Migration
     {
