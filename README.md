@@ -16,7 +16,7 @@ Scraper for NoBSGames
 - [x] NoBullshit.Server (webapi) - Scraper, API
 - [x] NoBullshit.Client (classlib) - HTTP Client Library
 - [x] NoBullshit.Cli (console) - Console Application
-- [ ] NoBullshit.Web (blazorwasm) - Blazor Webassembly Application
+- [x] NoBullshit.Web (blazorwasm) - Blazor Webassembly Application
 - [ ] NoBullshit.RazorUI (razorlib) - Razor Components
 - [ ] NoBullshit.Bot (???) - Bot Framework Bot
 - [ ] NoBullshit.App (maui) - MAUI Application

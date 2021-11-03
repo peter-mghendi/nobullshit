@@ -16,6 +16,15 @@ builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.Converters
             .Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)));
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder => 
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 /**
   * Swagger/OpenAPI config
   * REF: https://aka.ms/aspnetcore/swashbuckle
@@ -35,6 +44,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
