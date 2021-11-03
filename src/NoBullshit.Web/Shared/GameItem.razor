@@ -1,0 +1,25 @@
+@using NoBullshit.Shared.Models
+
+<div class="col">
+    <div class="card">
+        <img src="@Game.ImageUrl" alt="@Game.Name image">
+        <div class="card-body">
+            <h5 class="card-title">@Game.Name</h5>
+            <p class="card-text">
+                <strong>Platform:</strong> @Game.Platform<br />
+                <strong>Genres:</strong> @string.Join(", ", Game.Genres ?? Array.Empty<string>())<br />
+                <strong>Price:</strong> $@Game.Price<br />
+                <strong>Rating:</strong> @Game.Rating.ToString("0.0")<br />
+                <strong>Reviews:</strong> @Game.Reviews.ToString()
+            </p>
+            <a href="@Game.StoreUrl" class="btn btn-primary">
+                Get it in the store
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Game Game { get; set; } = new();
+}
