@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using NoBullshit.Client;
+@using NoBullshit.RazorUI.Shared;
 @using NoBullshit.Shared.Models;
 
 <PageTitle>Home | NoBullshit</PageTitle>
@@ -13,33 +14,7 @@
 }   
 else
 {
-    <div class="fst-italic">
-        <p>Last update: @games.LastUpdate</p>
-        <p>Next update: @games.NextUpdate</p>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 gy-4 mb-4">
-        @foreach (var game in games.Data!)
-        {
-            <GameItem Game="@game" />
-        }
-    </div>
-
-    <div class="d-flex justify-content-center mb-4">
-        @if (games!.CurrentPage > 1)
-        {
-            <NavLink href="?page=1" class="mx-2">&laquo;</NavLink>
-            <NavLink href="@PrevPage" class="mx-2">&lsaquo;</NavLink>
-        }
-        <span class="mx-2 fst-italic">
-            Page <span class="fst-bold">@games?.CurrentPage</span> of <span class="fst-bold">@games?.Pages</span>
-        </span>
-        @if (games!.CurrentPage < games!.Pages)
-        {
-            <NavLink href="@NextPage" class="mx-2">&rsaquo;</NavLink>
-            <NavLink href="@LastPage" class="mx-2">&raquo;</NavLink>
-        }
-    </div>
+    <GameList Games="@games" />
 }
 
 @code {
@@ -49,12 +24,6 @@ else
     [Parameter]
     [SupplyParameterFromQuery]
     public int Page { get; set; }
-
-    private string PrevPage => $"?page={Page - 1}";
-
-    private string NextPage => $"?page={Page + 1}";
-
-    private string LastPage => $"?page={games!.Pages}";
 
     protected override async Task OnInitializedAsync()
     {

@@ -1,0 +1,41 @@
+@using Microsoft.AspNetCore.Components.Routing
+@using NoBullshit.Shared.Models
+
+<div class="fst-italic">
+    <p>Last update: @Games.LastUpdate</p>
+    <p>Next update: @Games.NextUpdate</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 gy-4 mb-4">
+    @foreach (var game in Games.Data!)
+    {
+        <GameItem Game="@game" />
+    }
+</div>
+
+<div class="d-flex justify-content-center mb-4">
+    @if (Games!.CurrentPage > 1)
+    {
+        <NavLink href="?page=1" class="mx-2">&laquo;</NavLink>
+        <NavLink href="@PrevPage" class="mx-2">&lsaquo;</NavLink>
+    }
+    <span class="mx-2 fst-italic">
+        Page <span class="fst-bold">@Games?.CurrentPage</span> of <span class="fst-bold">@Games?.Pages</span>
+    </span>
+    @if (Games!.CurrentPage < Games!.Pages)
+    {
+        <NavLink href="@NextPage" class="mx-2">&rsaquo;</NavLink>
+        <NavLink href="@LastPage" class="mx-2">&raquo;</NavLink>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Response<List<Game>> Games { get; set; } = new();
+
+    private string PrevPage => $"?page={Games.CurrentPage - 1}";
+
+    private string NextPage => $"?page={Games.CurrentPage + 1}";
+
+    private string LastPage => $"?page={Games.Pages}";
+}
