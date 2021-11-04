@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NoBullshit.Client\NoBullshit.Client.csproj" />
+    <ProjectReference Include="..\NoBullshit.RazorUI\NoBullshit.RazorUI.csproj" />
   </ItemGroup>
 
 </Project>
