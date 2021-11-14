@@ -49,6 +49,14 @@ This repository is a Visual Studio Solution that comprises 6 of 10 planned proje
     *Depends on: NoBullshit.Client*
     
     Contains console application.
+    
+- [ ] NoBullshit.Generators - Class Library
+
+    *TFM: netstandard2.0*
+    
+    *Depends on: N/A*
+    
+    Will contain various source generators used by the other projects.
 
 - [x] [NoBullshit.Web](tree/main/src/NoBullshit.Web) - Blazor Webassembly Application
     
@@ -89,11 +97,13 @@ This repository is a Visual Studio Solution that comprises 6 of 10 planned proje
     *Depends on: NoBullshit.Client, NoBullshit.RazorUI*
     
     Will contain a lightweight multiplatform .NET MAUI Blazor App.
-
-- [ ] nobs - Vue PWA, TypeScript client
     
-    *TFM: N/A*
+## Also check out:
 
-    *Depends on: N/A*
-    
-    Contains VueJS progressive web application (PWA) and TypeScript client library.
+### [nobs](https://github.com/sixpeteunder/nobs)
+
+Vue 3 PWA built in TypeScript, with a built in client library for the API, also in TypeScript.
+
+### nbs (working title)
+
+Native Android application built in Kotlin, with a built in client library for the API, also in Kotlin.
