@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NoBullshit.Shared\NoBullshit.Shared.csproj" />
+    <ProjectReference Include="..\NoBullshit.Client\NoBullshit.Client.csproj" />
   </ItemGroup>
 
 </Project>

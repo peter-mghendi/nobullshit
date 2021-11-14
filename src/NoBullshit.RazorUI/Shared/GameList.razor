@@ -16,7 +16,7 @@
 <div class="d-flex justify-content-center mb-4">
     @if (Games!.CurrentPage > 1)
     {
-        <NavLink href="?page=1" class="mx-2">&laquo;</NavLink>
+        <NavLink href="/Index?page=1" class="mx-2">&laquo;</NavLink>
         <NavLink href="@PrevPage" class="mx-2">&lsaquo;</NavLink>
     }
     <span class="mx-2 fst-italic">
@@ -33,9 +33,9 @@
     [Parameter]
     public Response<List<Game>> Games { get; set; } = new();
 
-    private string PrevPage => $"?page={Games.CurrentPage - 1}";
+    private string PrevPage => $"/?page={Games.CurrentPage - 1}";
 
-    private string NextPage => $"?page={Games.CurrentPage + 1}";
+    private string NextPage => $"/?page={Games.CurrentPage + 1}";
 
-    private string LastPage => $"?page={Games.Pages}";
+    private string LastPage => $"/?page={Games.Pages}";
 }
