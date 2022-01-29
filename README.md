@@ -106,4 +106,4 @@ Vue 3 PWA built in TypeScript, with a built in client library for the API, also 
 
 ### nbs (working title)
 
-Native Android application built in Kotlin, with a built in client library for the API, also in Kotlin.
+Multiplarform Flutter application built in Dart, with a built in client library for the API, also in Dart.
